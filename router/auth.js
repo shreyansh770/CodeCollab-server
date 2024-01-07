@@ -12,10 +12,7 @@ async function enterInterview(req, res) {
        -> if yes, create/enter the room corresponding to that roomID
     */
 
-    const io = req.io; 
-    io.emit('joininterview',roomID);
-
-    res.status(200).send('User entered the room successfully');
+    res.status(200).json(roomID);
   } catch (error) {
     res.status(500).send('Internal server error');
   }

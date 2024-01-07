@@ -1,10 +1,10 @@
-// server.js
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 const cors = require('cors');
 const authRouter = require('./router/auth');
 const path = require('path');
+require('dotenv').config()
 
 const app = express();
 const server = http.createServer(app);
@@ -19,35 +19,21 @@ app.use(cors())
 
 app.use(express.json())
 
-// giving the io instance to every route
-// app.use((req,res,next)=>{
-//   req.io = io;
-//   next();
-// })
-
-// app.get("/",(req,res)=>{
-//   const options = {
-//     root: path.join(__dirname)
-// };
-
-// const fileName = 'index.html';
-// res.sendFile(fileName, options)
-// })
-// app.use("/auth",authRouter)
-
-
+app.use("/auth",authRouter)
 
 io.on('connection', (socket) => {
   console.log(`User connected ${socket.id}`);
 
   socket.on('codeChange', (newCode) => {
-    io.emit('codeChange', newCode);
+    let roomID = newCode.roomID;
+    io.to(roomID).emit('codeChange', newCode.newValue);
   });
+  
 
-  // socket.on('joininterview',(room)=>{
-  //   socket.join(room)
-  //   console.log(`Room joined`)
-  // })
+  socket.on('joininterview',(room)=>{
+    socket.join(room)
+    console.log(`Room joined ${room}`)
+  })
 
   socket.on('disconnect', () => {
     console.log('User disconnected');
