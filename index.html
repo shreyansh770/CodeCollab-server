@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Frontend</title>
+</head>
+<body>
+  <h1>Test Frontend</h1>
+  <button onclick="simulateJoinInterview()">Simulate Join Interview</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    function simulateJoinInterview() {
+      // Replace with your server's address
+      const serverAddress = 'http://localhost:3000';
+
+      fetch(`${serverAddress}/auth/enterInterview`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: 'test@example.com',
+          roomID: 'roomId123',
+        }),
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    }
+
+    // Listen for the 'joininterview' event
+    socket.on('joininterview', (roomID) => {
+      console.log(`Received joininterview event for room: ${roomID}`);
+    });
+  </script>
+</body>
+</html>
