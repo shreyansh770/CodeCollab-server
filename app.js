@@ -62,6 +62,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
+    mapForP1_P2_peerID = [];
     console.log("User disconnected");
   });
 });
