@@ -49,13 +49,13 @@ io.on("connection", (socket) => {
   socket.on("user-joined", (data) => {
     console.log("user-joined event received. User ID:", data.userID);
 
-    if (mapForP1_P2.length == 0) {
+    if (mapForP1_P2_peerID.length == 0) {
       socket.emit("video-status", { userId: data.userID, videoEnabled: true });
-      mapForP1_P2[0] = data.userID;
-    } else if (mapForP1_P2.length == 1) {
+      mapForP1_P2_peerID[0] = data.userID;
+    } else if (mapForP1_P2_peerID.length == 1) {
       socket.emit("video-status", { userId: data.userID, videoEnabled: true });
       socket.emit("video-status", {
-        userId: mapForP1_P2[0],
+        userId: mapForP1_P2_peerID[0],
         videoEnabled: true,
       });
     }
