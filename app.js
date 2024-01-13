@@ -29,7 +29,7 @@ app.use("/auth", authRouter);
 
 let mapForP1_P2_peerID = []; // 0 -> individual 1 ; 1-> individual 2
 let mapForP1_P2_socketID = []; // 0 -> individual 1 ; 1-> individual 2
-
+console.log(mapForP1_P2_peerID);
 io.on("connection", (socket) => {
   if (mapForP1_P2_socketID.length == 0) {
     mapForP1_P2_socketID[0] = socket.id;
@@ -53,11 +53,14 @@ io.on("connection", (socket) => {
       socket.emit("video-status", { userId: data.userID, videoEnabled: true });
       mapForP1_P2_peerID[0] = data.userID;
     } else if (mapForP1_P2_peerID.length == 1) {
+      console.log(mapForP1_P2_peerID);
       socket.emit("video-status", { userId: data.userID, videoEnabled: true });
       socket.emit("video-status", {
         userId: mapForP1_P2_peerID[0],
         videoEnabled: true,
       });
+
+
     }
   });
 
