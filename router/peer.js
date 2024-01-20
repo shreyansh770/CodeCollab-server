@@ -80,9 +80,6 @@ async function getCandidatePeerID(req,res){
                 can_peerID
             })
         }
-
-
-
     } catch (error) {
         res.status(500).message("Internal server error");
     }

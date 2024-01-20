@@ -6,6 +6,8 @@ const authRouter = require("./router/auth");
 const path = require("path");
 require("dotenv").config();
 const peerRouter = require("./router/peer");
+const problemRouter = require("./router/problems/problem");
+const interViewRouter = require("./router/interview/interview");
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
@@ -23,6 +25,8 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/peer", peerRouter);
+app.use("/problem",problemRouter);
+app.use("/interview",interViewRouter)
 
 
 io.on("connection", (socket) => {

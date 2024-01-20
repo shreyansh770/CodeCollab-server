@@ -32,11 +32,11 @@ const customTestCaseSchema = new mongoose.Schema({
 
 const problemSchema = new mongoose.Schema({
   description: {
-    type: String,
+    type: [String],  
     required: true,
   },
   constraints: {
-    type: String,
+    type: [String],  
     required: true,
   },
   difficulty: {
@@ -47,10 +47,14 @@ const problemSchema = new mongoose.Schema({
   problemImage: {
     type: String,
   },
-  example: [exampleExplain],
+  example: [exampleExplain],  
 
-  customTestCase: [customTestCaseSchema],
+  customTestCases: [customTestCaseSchema], 
 });
+
+const Problem = mongoose.model('Problem', problemSchema);
+module.exports = Problem;
+
 
 const problemModel = mongoose.model("problemModel", problemSchema);
 
