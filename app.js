@@ -26,10 +26,10 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("api/v1/auth", authRouter);
-app.use("api/v1/peer", peerRouter);
-app.use("api/v1/problem",problemRouter);
-app.use("api/v1/interview",interViewRouter)
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/peer", peerRouter);
+app.use("/api/v1/problem",problemRouter);
+app.use("/api/v1/interview",interViewRouter)
 app.get("/api/v1/test",(req,res)=>{
   res.send("Testing....")
 })
