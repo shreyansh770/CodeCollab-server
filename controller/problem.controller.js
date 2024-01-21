@@ -4,7 +4,7 @@ async function addProblem (req,res){
     try {
 
 
-        let {title , description , constraints,difficulty,problemImage , example,customTestCases} = req.body
+        let {title , description , constraints,difficulty,problemImage , example,customTestCases} = req.body.questionObject
 
         const problem = new problemModel({
           title,
