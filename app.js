@@ -26,10 +26,10 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/auth", authRouter);
-app.use("/peer", peerRouter);
-app.use("/problem",problemRouter);
-app.use("/interview",interViewRouter)
+app.use("api/v1/auth", authRouter);
+app.use("api/v1/peer", peerRouter);
+app.use("api/v1/problem",problemRouter);
+app.use("api/v1/interview",interViewRouter)
 
 
 io.on("connection", (socket) => {
