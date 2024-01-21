@@ -1,5 +1,6 @@
 const express = require('express')
 const { addProblem, getAllProblem } = require('../../controller/problem.controller')
+const { authenticate, authorize } = require('../../middlewares/authMiddleware')
 const problemRouter = express.Router()
 
 

@@ -15,22 +15,27 @@ const exampleExplain = new mongoose.Schema({
   },
   explanation: {
     type: String,
-    required: true,
   },
+
+  image :{
+    type: String,
+  }
 });
 
 const customTestCaseSchema = new mongoose.Schema({
   input: {
     type: String,
-    required: true,
   },
   output: {
     type: String,
-    required: true,
   },
 });
 
 const problemSchema = new mongoose.Schema({
+  title :{
+     type : String,
+     required : true
+  },
   description: {
     type: [String],  
     required: true,
@@ -41,7 +46,7 @@ const problemSchema = new mongoose.Schema({
   },
   difficulty: {
     type: String,
-    enum: ["easy", "medium", "hard"],
+    enum: ["Easy", "Medium", "Hard"],
     required: true,
   },
   problemImage: {
@@ -52,8 +57,7 @@ const problemSchema = new mongoose.Schema({
   customTestCases: [customTestCaseSchema], 
 });
 
-const Problem = mongoose.model('Problem', problemSchema);
-module.exports = Problem;
+
 
 
 const problemModel = mongoose.model("problemModel", problemSchema);

@@ -3,9 +3,11 @@ const problemModel = require('../model/problemModel')
 async function addProblem (req,res){
     try {
 
-        let {description , constraints,difficulty,problemImage , example,customTestCases} = req.body
+
+        let {title , description , constraints,difficulty,problemImage , example,customTestCases} = req.body
 
         const problem = new problemModel({
+          title,
           description,
           constraints,
           difficulty,

@@ -5,9 +5,12 @@ const cors = require("cors");
 const authRouter = require("./router/auth");
 const path = require("path");
 require("dotenv").config();
+const cookieParser = require('cookie-parser');
 const peerRouter = require("./router/peer");
 const problemRouter = require("./router/problems/problem");
 const interViewRouter = require("./router/interview/interview");
+
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
@@ -20,8 +23,8 @@ const io = socketIO(server, {
 
 
 app.use(cors());
-
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/auth", authRouter);
 app.use("/peer", peerRouter);
