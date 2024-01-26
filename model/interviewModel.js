@@ -38,6 +38,13 @@ const interviewSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  status :{
+    type : String,
+    default : 'pending'
+  },
+  resume_url :{
+    type:String
+  }
 });
 
 const interviewModel = mongoose.model('interviewModel', interviewSchema);
