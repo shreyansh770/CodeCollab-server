@@ -58,6 +58,7 @@ async function createInterView(req, res) {
 async function getWindowSpecificInterviews(req, res) {
   try {
     const { range , company} = req.params;
+
     const currentDate = new Date();
     let startDate;
     switch (range) {
