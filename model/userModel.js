@@ -19,12 +19,23 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  position:{
+    type :String,
+    required : true
+  },
   isSuperAdmin: {
-    type: Boolean
+    type: Boolean,
+    default : false
+  },
+  phoneNumber:{
+    type:Number,
+    required:true
   },
   company: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Company'
   },
+
 });
 
 userSchema.pre('save', async function (next) {

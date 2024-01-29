@@ -27,7 +27,7 @@ async function createInterView(req, res) {
     const roomID = uuidv4().slice(-4);
 
     let file = req.file ? req.file : null;
-    console.log(file)
+
     let dataURI = convertBase64(file)
 
     const result = await cloudinary.uploader.upload(dataURI, {
