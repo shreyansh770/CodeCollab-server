@@ -127,7 +127,7 @@ async function login(req, res) {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        // let expiry = parseInt(process.env.JWT_EXPIRY_CONFIG,10);
+        // let expiry = parseInt(process.env.JWT_EXPIRY_CONFIG,10)
         let expiry = 2 * 24 * 60 * 60 * 1000;
 
         let payload = {
