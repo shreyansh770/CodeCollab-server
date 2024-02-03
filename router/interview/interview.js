@@ -14,11 +14,11 @@ const interViewRouter = express.Router();
 
 
 
-interViewRouter.route("/getwindow/:range/:company").get(getWindowSpecificInterviews);
+interViewRouter.route("/getwindow/:range").get(authenticate,roleAuthorization,getWindowSpecificInterviews);
 interViewRouter.route("/get").post(authenticate,roleAuthorization,getInterviews);
 interViewRouter.route("/create").post(authenticate,roleAuthorization,upload.single('file'),createInterView);
-interViewRouter.route("/update").post(updateInterview);
-interViewRouter.route("/updatestatus").post(updateStatus);
-interViewRouter.route("/delete").post(deleteInterview);
+interViewRouter.route("/update").post(authenticate,roleAuthorization,updateInterview);
+interViewRouter.route("/updatestatus").post(authenticate,roleAuthorization,updateStatus);
+interViewRouter.route("/delete").post(authenticate,roleAuthorization,deleteInterview);
 
 module.exports = interViewRouter;

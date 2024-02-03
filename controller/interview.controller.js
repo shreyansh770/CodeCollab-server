@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require("uuid");
+const mongoose = require('mongoose');
 const interviewModel = require("../model/interviewModel");
 const cloudinary = require("../config/cloudinary");
 const convertBase64 = require("../utils/base64");
@@ -11,7 +12,7 @@ async function getInterviews(req, res) {
     if (interviews.length > 0) {
       res.status(200).json(interviews);
     } else {
-      res.status(200).json("No interview exists");
+      res.status(404).json("No interview exists");
     }
   } catch (error) {
     res.status(500).send("Internal server error");
@@ -57,8 +58,8 @@ async function createInterView(req, res) {
 
 async function getWindowSpecificInterviews(req, res) {
   try {
-    const { range , company} = req.params;
-
+    let { range } = req.params;
+    let company = new mongoose.Types.ObjectId(req.isVerified.company)
     const currentDate = new Date();
     let startDate;
     switch (range) {
@@ -72,7 +73,7 @@ async function getWindowSpecificInterviews(req, res) {
       case "monthly":
         startDate = new Date(
           currentDate.getFullYear(),
-          currentDate.getMonth() - 12,
+          currentDate.getMonth() - 1,
           currentDate.getDate()
         );
         break;
@@ -121,7 +122,7 @@ async function getWindowSpecificInterviews(req, res) {
 
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).send("Internal server error");
+    res.status(500).send(error.message);
   }
 }
 

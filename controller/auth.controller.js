@@ -171,6 +171,23 @@ async function logout(req, res) {
   }
 }
 
+async function getLoginInUser(req, res) {
+  try {
+    let { _id } = req.isVerified;
+
+    let user = await User.findOne({ _id });
+
+    if (user) {
+      user.password = undefined
+      res.status(200).json({ message: "User successfully fetched", user });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
 async function enterInterview(req, res) {
   try {
     let { email, roomID } = req.body;
@@ -186,10 +203,12 @@ async function enterInterview(req, res) {
   }
 }
 
+
 module.exports = {
   enterInterview,
   createUser,
   login,
   logout,
   register,
+  getLoginInUser
 };
