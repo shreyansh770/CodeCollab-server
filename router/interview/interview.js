@@ -8,12 +8,15 @@ const {
   updateStatus,
 } = require("../../controller/interview.controller");
 const upload = require("../../config/multer");
+const { authenticate, roleAuthorization } = require("../../middlewares/authMiddleware");
 
 const interViewRouter = express.Router();
 
+
+
 interViewRouter.route("/getwindow/:range/:company").get(getWindowSpecificInterviews);
-interViewRouter.route("/get").post(getInterviews);
-interViewRouter.route("/create").post(upload.single('file'),createInterView);
+interViewRouter.route("/get").post(authenticate,roleAuthorization,getInterviews);
+interViewRouter.route("/create").post(authenticate,roleAuthorization,upload.single('file'),createInterView);
 interViewRouter.route("/update").post(updateInterview);
 interViewRouter.route("/updatestatus").post(updateStatus);
 interViewRouter.route("/delete").post(deleteInterview);

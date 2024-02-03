@@ -34,7 +34,8 @@ const interviewSchema = new mongoose.Schema({
     trim: true,
   },
   company: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Company',
     required: true,
     trim: true,
   },

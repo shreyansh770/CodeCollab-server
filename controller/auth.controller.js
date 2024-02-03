@@ -131,7 +131,8 @@ async function login(req, res) {
         let expiry = 2 * 24 * 60 * 60 * 1000;
 
         let payload = {
-          email: user.email,
+          _id: user._id,
+          company : user.company,
           isSuperAdmin: user.role == false ? 0 : 1,
         };
 

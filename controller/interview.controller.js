@@ -5,7 +5,7 @@ const convertBase64 = require("../utils/base64");
 
 async function getInterviews(req, res) {
   try {
-    let { company } = req.body;
+    let { company } = req.isVerified;
     let interviews = await interviewModel.find({ company: company });
 
     if (interviews.length > 0) {
@@ -20,10 +20,10 @@ async function getInterviews(req, res) {
 
 async function createInterView(req, res) {
   try {
-    let { inv_email, can_email, role, date, time, company } = JSON.parse(
+    let { inv_email, can_email, role, date, time } = JSON.parse(
       req.body.data
     );
-
+    let company_id = req.isVerified.company
     const roomID = uuidv4().slice(-4);
 
     let file = req.file ? req.file : null;
@@ -43,7 +43,7 @@ async function createInterView(req, res) {
       date,
       time,
       roomID,
-      company,
+      company:company_id,
       resume_url: result.secure_url,
     });
 
