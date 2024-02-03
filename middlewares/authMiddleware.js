@@ -6,6 +6,9 @@ require("dotenv").config();
 const authenticate = (req, res, next) => {
   try {
     const token = req.cookies.jwt_token;
+    if(!token){
+      res.status(401).json({ error: "no token provided" });
+    }
     let isVerified = jwtverify(token);
     if (isVerified) {
       req.isVerified = isVerified;
