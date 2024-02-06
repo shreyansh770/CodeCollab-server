@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const connectToMongoDB = require('../utils/mongo')
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const connectToMongoDB = require("../utils/mongo");
 
-connectToMongoDB()
+connectToMongoDB();
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -19,37 +19,40 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  position:{
-    type :String,
-    required : true
+  position: {
+    type: String,
+    required: true,
   },
   isSuperAdmin: {
     type: Boolean,
-    default : false
+    default: false,
   },
-  phoneNumber:{
-    type:Number,
-    required:true
+  phoneNumber: {
+    type: Number,
+    required: true,
   },
   company: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Company'
+    ref: "Company",
   },
 
+  otp: {
+    type: String,
+  },
 });
 
-userSchema.pre('save', async function (next) {
-    const user = this;
-  
-    if (user.isModified('password')) {
-      const saltRounds = 10;
-      user.password = await bcrypt.hash(user.password, saltRounds);
-    }
-  
-    next();
-});
-  
+userSchema.pre("save", async function (next) {
+  const user = this;
 
-const User = mongoose.model('User', userSchema);
+  if (user.isModified("password")) {
+    const saltRounds = 10;
+    user.password = await bcrypt.hash(user.password, saltRounds);
+  }
+
+  next();
+});
+
+
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
