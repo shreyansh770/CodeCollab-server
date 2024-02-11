@@ -141,7 +141,7 @@ async function login(req, res) {
 
         let payload = {
           _id: user._id,
-          company: user.company,
+          company: user.company._id,
           isSuperAdmin: user.role == false ? 0 : 1,
         };
 
