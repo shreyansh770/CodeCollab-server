@@ -50,10 +50,15 @@ const companySchema = new mongoose.Schema({
     trim: true,
   },
 
-  GSTIN :{
-    type : String,
-    unique : true
-  }
+  GSTIN: {
+    type: String,
+    unique: true,
+  },
+
+  plan: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "planModel",
+  },
 });
   
 

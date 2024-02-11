@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const interviewModel = require("../model/interviewModel");
 const cloudinary = require("../config/cloudinary");
 const convertBase64 = require("../utils/base64");
+const sendMail = require("../utils/sendMail");
 
 async function getInterviews(req, res) {
   try {
@@ -49,6 +50,9 @@ async function createInterView(req, res) {
     });
 
     interView.save();
+
+    sendMail(3,roomID,inv_email)
+    sendMail(3,roomID,can_email)
 
     res.status(200).json({message : "Interview successfully scheduled",url :result.secure_url});
   } catch (error) {
