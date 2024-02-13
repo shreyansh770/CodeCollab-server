@@ -45,7 +45,8 @@ async function paymentVerification (req,res){
             .digest("hex");
     
         const isAuthentic = expectedSignature === razorpay_signature;
-    
+
+         console.log(isAuthentic+"->49");
         if (isAuthentic) { 
             const payment = await RazorPayInstance.payments.fetch(razorpay_payment_id);  
             const { notes } = payment; 
@@ -56,6 +57,7 @@ async function paymentVerification (req,res){
                 paymentMethod: payment.method,
                 status: payment.status,
             } 
+            console.log(paymentDetails+"->49");
             await paymentModel.create(paymentDetails);
             paymentDetails.payment_id = razorpay_payment_id  
             let VerificationRedirectURL = `https://interviewsync.in/paymentsuccessfull?data=${JSON.stringify(paymentDetails)}`
