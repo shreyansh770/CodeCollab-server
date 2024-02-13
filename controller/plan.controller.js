@@ -48,8 +48,10 @@ const getPlan = async (req,res)=>{
     }
 }
 
+
+
 module.exports = {
     subscribeToPlan,
     addPlan,
-    getPlan,
+    getPlan
 }

@@ -34,7 +34,7 @@ app.use("/api/v1/peer", peerRouter);
 app.use("/api/v1/problem",problemRouter);
 app.use("/api/v1/interview",interViewRouter)
 app.use("/api/v1/plan",planRouter)
-app.use("/api/v1/payement",paymentRouter)
+app.use("/api/v1/payment",paymentRouter)
 
 
 
