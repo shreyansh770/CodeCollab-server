@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 require("dotenv").config();
 const { paymentModel } = require("../model/paymentCheckout");
 const planModel = require("../model/planModel");
