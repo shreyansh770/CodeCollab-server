@@ -10,6 +10,7 @@ const peerRouter = require("./router/peer");
 const problemRouter = require("./router/problems/problem");
 const interViewRouter = require("./router/interview/interview");
 const planRouter = require("./router/plan/plan");
+const paymentRouter = require("./router/payment/payment");
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.use("/api/v1/peer", peerRouter);
 app.use("/api/v1/problem",problemRouter);
 app.use("/api/v1/interview",interViewRouter)
 app.use("/api/v1/plan",planRouter)
+app.use("/api/v1/payement",paymentRouter)
 
 
 
