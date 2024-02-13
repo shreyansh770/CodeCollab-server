@@ -6,7 +6,7 @@ let paymentRouter = express.Router()
 
 paymentRouter.route("/getKey").get(getKey)
 paymentRouter.route("/paymentverification").post(paymentVerification)
-paymentRouter.route("/checkout").post(checkout)
+paymentRouter.route("/checkout/:id").post(checkout)
 
 
 module.exports = paymentRouter
