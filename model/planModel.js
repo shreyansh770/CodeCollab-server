@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectToMongoDB = require("../utils/mongo");
 
-connectToMongoDB();
 
 
 const planSchema = new mongoose.Schema({

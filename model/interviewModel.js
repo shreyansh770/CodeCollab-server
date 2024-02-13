@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-const connectToMongoDB = require("../utils/mongo");
-
-connectToMongoDB();
-
 const interviewSchema = new mongoose.Schema({
   inv_email: {
     type: String,

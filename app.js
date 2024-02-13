@@ -11,6 +11,7 @@ const problemRouter = require("./router/problems/problem");
 const interViewRouter = require("./router/interview/interview");
 const planRouter = require("./router/plan/plan");
 const paymentRouter = require("./router/payment/payment");
+const connectToMongoDB = require("./utils/mongo");
 
 
 const app = express();
@@ -61,4 +62,5 @@ io.on("connection", (socket) => {
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  connectToMongoDB()
 });

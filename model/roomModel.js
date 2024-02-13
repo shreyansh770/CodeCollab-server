@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const connectToMongoDB = require('../utils/mongo')
 
-connectToMongoDB()
+
+
 
 const roomSchema = new mongoose.Schema({
     roomID :{

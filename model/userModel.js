@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const connectToMongoDB = require("../utils/mongo");
 
-connectToMongoDB();
+
+
 
 const userSchema = new mongoose.Schema({
   name: {
