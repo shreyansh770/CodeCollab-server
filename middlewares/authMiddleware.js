@@ -40,6 +40,7 @@ const roleAuthorization = async (req, res, next) => {
     let company = req.isVerified.company;
     let user = await User.findOne({ _id });
     if (user) {
+
       if (user.company != company) {
         res.status(404).send("Unable to access");
       } else {

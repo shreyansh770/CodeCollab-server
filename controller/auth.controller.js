@@ -47,6 +47,22 @@ async function createUser(req, res) {
     });
 
     const savedUser = await user.save();
+
+    let expiry = 2 * 24 * 60 * 60 * 1000;
+
+    let payload = {
+      _id: user._id,
+      company: user.company._id,
+      isSuperAdmin: user.role == false ? 0 : 1,
+    };
+
+    let token = jwtsign(payload);
+
+    res.cookie("jwt_token", token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + expiry),
+    });
+
     res.status(200).json({ user: savedUser, company });
   } catch (error) {
     res.status(500).send(error.message);

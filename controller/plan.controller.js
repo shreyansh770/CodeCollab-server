@@ -20,11 +20,12 @@ const subscribeToPlan = async(req,res)=>{
 const addPlan = async (req,res)=>{
     
     try {
-        const { planName, planPrice, noOfInterviews } = req.body;
+        const { planName, planPrice, noOfInterviews , planTag } = req.body;
 
         const newPlan = new planModel({
           planName,
           planPrice,
+          planTag,
           noOfInterviews,
         });
 
@@ -35,8 +36,20 @@ const addPlan = async (req,res)=>{
     }
 }
 
+const getPlan = async (req,res)=>{
+    try {
+
+        let plans = await planModel.find({})
+
+        res.status(200).json(plans)
+        
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}
 
 module.exports = {
     subscribeToPlan,
-    addPlan
+    addPlan,
+    getPlan,
 }

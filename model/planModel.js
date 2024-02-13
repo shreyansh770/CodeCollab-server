@@ -15,6 +15,10 @@ const planSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    planTag :{
+      type : String,
+      required : true,
+    },
     noOfInterviews: {
       type: Number,
       required: true,
