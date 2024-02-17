@@ -25,7 +25,7 @@ const io = socketIO(server, {
 
 
 
-app.use(cors());
+app.use(cors({ origin: "https://interviewsync.in/" }));
 app.use(express.json());
 app.use(cookieParser());
 
