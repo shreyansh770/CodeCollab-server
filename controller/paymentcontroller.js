@@ -58,7 +58,7 @@ async function paymentVerification (req,res){
             } 
             // await paymentModel.create(paymentDetails);
             // paymentDetails.payment_id = razorpay_payment_id  
-            let VerificationRedirectURL = `https://https://interviewsync.in/paymentsuccessfull?data=${JSON.stringify(paymentDetails)}`
+            let VerificationRedirectURL = `https://interviewsync.in/paymentsuccessfull?data=${JSON.stringify(paymentDetails)}`
             console.log(VerificationRedirectURL);
             res.set('Access-Control-Allow-Origin', 'https://interviewsync.in');
             res.redirect(VerificationRedirectURL)
