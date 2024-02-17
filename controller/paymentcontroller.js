@@ -58,8 +58,8 @@ async function paymentVerification (req,res){
                 status: payment.status,
             } 
             console.log(paymentDetails+"->49");
-            await paymentModel.create(paymentDetails);
-            paymentDetails.payment_id = razorpay_payment_id  
+            // await paymentModel.create(paymentDetails);
+            // paymentDetails.payment_id = razorpay_payment_id  
             let VerificationRedirectURL = `https://interviewsync.in/paymentsuccessfull?data=${JSON.stringify(paymentDetails)}`
             res.redirect(VerificationRedirectURL)
         }
