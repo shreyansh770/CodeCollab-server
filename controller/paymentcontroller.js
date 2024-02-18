@@ -62,7 +62,7 @@ async function paymentVerification (req,res){
             // console.log(VerificationRedirectURL);
             // res.set('Access-Control-Allow-Origin', 'https://interviewsync.in');
             // res.redirect(VerificationRedirectURL)
-            res.send(200).json(paymentDetails)
+            res.status(200).json(paymentDetails)
         }
     }
     catch(error){
