@@ -55,7 +55,7 @@ async function paymentVerification (req,res){
                 totalAmount: payment.amount / 100,
                 paymentMethod: payment.method,
                 status: payment.status,
-                planName : payment.planName,
+                planName : notes.planName,
                 transactionId : razorpay_payment_id
             } 
             // await paymentModel.create(paymentDetails);
