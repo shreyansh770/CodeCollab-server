@@ -9,6 +9,7 @@ const convertBase64 = require("../utils/base64");
 const cloudinary = require("../config/cloudinary");
 const generateOTP = require("../utils/OTPgenerator");
 const sendMail = require("../utils/sendMail");
+const interviewModel = require("../model/interviewModel");
 
 
 async function createUser(req, res) {
@@ -215,13 +216,21 @@ async function getLoginInUser(req, res) {
 async function enterInterview(req, res) {
   try {
     let { email, roomID } = req.body;
+    let validation = validateUserInput(
+      email, roomID
+    );
 
-    /*
-         -> check in db if the roomID matches to the email of the user
-         -> if yes, create/enter the room corresponding to that roomID
-      */
+    if (!validation.isValid) {
+      return res.status(400).json({ error: validation.error });
+    }
 
-    res.status(200).json(roomID);
+    let invObj = await interviewModel.findOne({roomID: roomID});
+
+    if(email == invObj.inv_email){
+      return res.status(200).json({ type : "I", roomID , invObj})
+    }else if(email == invObj.can_email){
+      return res.status(200).json({ type : "C", roomID ,_id: invObj._id})
+    }
   } catch (error) {
     res.status(500).send("Internal server error");
   }

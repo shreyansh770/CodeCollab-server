@@ -12,6 +12,7 @@ const interViewRouter = require("./router/interview/interview");
 const planRouter = require("./router/plan/plan");
 const paymentRouter = require("./router/payment/payment");
 const connectToMongoDB = require("./utils/mongo");
+const invRoomRouter = require("./router/interview/interviewroom");
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/peer", peerRouter);
 app.use("/api/v1/problem",problemRouter);
 app.use("/api/v1/interview",interViewRouter)
+app.use("/api/v1/interviewroom",invRoomRouter)
 app.use("/api/v1/plan",planRouter)
 app.use("/api/v1/payment",paymentRouter)
 

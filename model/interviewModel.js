@@ -41,6 +41,10 @@ const interviewSchema = new mongoose.Schema({
   },
   resume_url :{
     type:String
+  },
+  problems :{
+     type : [mongoose.Schema.Types.ObjectId],
+     ref : 'problemModel'
   }
 });
 

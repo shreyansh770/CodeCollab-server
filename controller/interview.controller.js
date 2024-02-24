@@ -64,6 +64,7 @@ async function getWindowSpecificInterviews(req, res) {
   try {
     let { range } = req.params;
     let company = new mongoose.Types.ObjectId(req.isVerified.company)
+    
     const currentDate = new Date();
     let startDate;
     switch (range) {
