@@ -51,6 +51,10 @@ io.on("connection", (socket) => {
     socket.join(room);
     console.log(`Room joined ${room}`);
   });
+  socket.on("interview-started", (room) => {
+    let roomID = room;
+    io.to(roomID).emit("interview-started");
+  });
 
   socket.on("user-joined", (data) => {
     console.log("user-joined event received. User ID:", data.userID);
