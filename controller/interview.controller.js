@@ -51,8 +51,8 @@ async function createInterView(req, res) {
 
     interView.save();
 
-    sendMail(3,roomID,inv_email)
-    sendMail(3,roomID,can_email)
+    sendMail(3,roomID,inv_email,role , date , time , 0,can_email)
+    sendMail(3,roomID,can_email,role,date,time , 1)
 
     res.status(200).json({message : "Interview successfully scheduled",url :result.secure_url});
   } catch (error) {
