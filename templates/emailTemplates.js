@@ -1,5 +1,7 @@
- const getCandidateEmailTemplate = (name,company,position,date,time,roomID)=>{
-    return  `<table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:0;max-width:600px" width="100%">
+const getCandidateEmailTemplate = (name,company,position,date,time,interviewer,emailCandidate,token)=>{
+    const interviewJoiningData = btoa(JSON.stringify({ email: emailCandidate ,token:token}));
+    const interviewLink = `https://interviewsync.in/enterInterview?data=${interviewJoiningData}`;
+    return `<table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:0;max-width:600px" width="100%">
     <tbody>
         <tr>
             <td align="center" bgcolor="#f8f9fa" id="m_5486121498000694681templatePreheader" style="text-align:center;background:#f8f9fa;border-bottom-color:#01305b;border-bottom-style:solid;border-bottom-width:10px;border-top-width:0" valign="top">
@@ -71,7 +73,7 @@
                                                                 <!-- </a></h2> -->
 
                                                             <h3 align="left" style="color:#979faf;display:block;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:14px;font-style:normal;font-weight:normal;letter-spacing:normal;line-height:125%;margin:0 0 10px 0;padding:0;text-align:left">  </h3>
-                                                            <?> <strong>When :</strong> "${date}  ${time}" <br/></br></span> </td>
+                                                            <?> <strong>When :</strong> "${date}  ${time}" <br/></br></span> <span><strong>Interviewer: </strong>"${interviewer}"</span></span> </span></td>
                                                             
                                                             
                                                         </tr>
@@ -91,7 +93,7 @@
                                                 <table bgcolor="#2EC866" border="0" cellpadding="0" cellspacing="0" style="background:#01305b;border-collapse:separate!important;border-radius:3px">
                                                     <tbody>
                                                         <tr>
-                                                            <td align="center" style="font-family:Arial;font-size:16px;padding:15px;color:#fff" valign="middle"><a href= "https://interviewsync.in/enterInterview"style="color:#ffffff;display:block;font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;word-wrap:break-word" title="Solve maxsubarray!" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://interviewsync.in/"> Start Interview ${roomID}  </a></td>
+                                                            <td align="center" style="font-family:Arial;font-size:16px;padding:15px;color:#fff" valign="middle"><a href= "${interviewLink}"style="color:#ffffff;display:block;font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;word-wrap:break-word" title="Solve maxsubarray!" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://interviewsync.in/"> Start Interview  </a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -153,10 +155,14 @@
             </td>
         </tr>
     </tbody>
-</table>`
+</table>`;
 }
 
- const getInterviewerEmailTemplate = (name,position,date,time,candidate,roomID)=>{
+const getInterviewerEmailTemplate = (name,position,date,time,candidate,emailInterviewer,token)=>{
+        const interviewJoiningData = btoa(
+          JSON.stringify({ email: emailInterviewer, token: token })
+        );
+        const InterviewLink = `https://interviewsync.in/enterInterview?data=${interviewJoiningData}`;
 return `  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:0;max-width:600px" width="100%">
 <tbody>
     <tr>
@@ -249,7 +255,7 @@ return `  <table border="0" cellpadding="0" cellspacing="0" style="border-collap
                                             <table bgcolor="#2EC866" border="0" cellpadding="0" cellspacing="0" style="background:#01305b;border-collapse:separate!important;border-radius:3px">
                                                 <tbody>
                                                     <tr>
-                                                        <td align="center" style="font-family:Arial;font-size:16px;padding:15px;color:#fff" valign="middle"><a href= "https://interviewsync.in/enterInterview"style="color:#ffffff;display:block;font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;word-wrap:break-word" title="Solve maxsubarray!" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://interviewsync.in/"> Start Interview ${roomID}  </a></td>
+                                                        <td align="center" style="font-family:Arial;font-size:16px;padding:15px;color:#fff" valign="middle"><a href= "${InterviewLink}"style="color:#ffffff;display:block;font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;word-wrap:break-word" title="Solve maxsubarray!" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://interviewsync.in/"> Start Interview  </a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -315,7 +321,7 @@ return `  <table border="0" cellpadding="0" cellspacing="0" style="border-collap
 }
  
 
-module.exports = {
+module.exports={
     getCandidateEmailTemplate,
     getInterviewerEmailTemplate
 }
