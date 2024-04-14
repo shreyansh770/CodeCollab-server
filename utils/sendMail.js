@@ -30,7 +30,7 @@ async function sendMail(type, data, recipient , role , date , time,flag,can_emai
   } else {
 
     
-    let template = (flag==1)? getCandidateEmailTemplate(recipient,"Interview Sync",role,date,time,recipient,data):getInterviewerEmailTemplate(recipient,role,date,time,can_email,can_email,data)
+    let template = (flag==1)? getCandidateEmailTemplate(recipient,"Interview Sync",role,date,time,can_email,data):getInterviewerEmailTemplate(recipient,role,date,time,can_email,recipient,data)
 
     let info = await transporter.sendMail({
       from: `"Interview Sync" ${process.env.NODEMAILER_EMAIL}`,
